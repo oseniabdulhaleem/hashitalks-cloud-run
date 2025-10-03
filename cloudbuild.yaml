@@ -1,0 +1,33 @@
+steps:
+  # Step 1: Build the container image using the Dockerfile
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'Build Image'
+    args:
+      - 'build'
+      - '-t'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_APP_NAME}-repo/${_APP_NAME}:$SHORT_SHA'
+      - '.'
+
+  # Step 2: Push the built image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'Push Image'
+    args: ['push', '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_APP_NAME}-repo/${_APP_NAME}:$SHORT_SHA']
+
+  # Step 3: Create a Cloud Deploy Release to kick off the deployment
+  # This step now runs unconditionally, because we know this entire build
+  # was triggered by an approved merge to main.
+  - name: 'gcr.io/google.com/cloudsdktool/google-cloud-cli'
+    id: 'Create Release'
+    args:
+      - 'gcloud'
+      - 'deploy'
+      - 'releases'
+      - 'create'
+      - 'release-${SHORT_SHA}'
+      - '--delivery-pipeline=${_DELIVERY_PIPELINE}'
+      - '--region=${_REGION}'
+      - '--source=.'
+      - '--images=my-app=${_REGION}-docker.pkg.dev/$PROJECT_ID/${_APP_NAME}-repo/${_APP_NAME}:$SHORT_SHA'
+
+images:
+  - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_APP_NAME}-repo/${_APP_NAME}:$SHORT_SHA'

@@ -1,0 +1,14 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  # This name is a placeholder and will be replaced by the name from the Skaffold profile
+  name: hashitalks-cloud-run-app
+spec:
+  template:
+    spec:
+      containers:
+        # CRITICAL: This image name 'my-app' MUST match the key used
+        # in the 'gcloud deploy releases create --images' command in cloudbuild.yaml.
+        - image: hashitalks-cloud-run-app
+          ports:
+            - containerPort: 8080

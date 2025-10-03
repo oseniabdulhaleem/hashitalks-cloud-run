@@ -1,0 +1,35 @@
+# UPDATED: Using a recent API version is best practice.
+# This ensures we can use the latest features supported by Cloud Deploy's rendering engine.
+apiVersion: skaffold/v4beta6
+kind: Config
+metadata:
+  name: hashitalks-cloud-run-app
+
+# IMPORTANT: We keep the `googleCloudRun` deployer type.
+# This is the specific integration that Google Cloud Deploy recognizes and uses.
+# We DO NOT add `projectid` or `region` here, as Cloud Deploy injects that
+# information from its Target definitions, allowing this file to be portable.
+deploy:
+  googleCloudRun: {}
+
+# The `profiles` section remains the core mechanism for Cloud Deploy to select
+# the correct configuration for each environment (test, staging, production).
+profiles:
+  - name: test
+    deploy:
+      googleCloudRun:
+        name: hashitalks-cloud-run-app-test
+
+  - name: staging
+    deploy:
+      googleCloudRun:
+        name: hashitalks-cloud-run-app-staging
+
+  - name: production
+    deploy:
+      googleCloudRun:
+        name: hashitalks-cloud-run-app-production
+
+manifests:
+  rawYaml:
+    - service.yaml
