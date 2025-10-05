@@ -1,8 +1,7 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  # This name is a placeholder and will be replaced by the name from the Skaffold profile
-  name: hashitalks-cloud-run-app
+  name: my-app
 spec:
   template:
     spec:
