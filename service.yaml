@@ -8,6 +8,6 @@ spec:
       containers:
         # CRITICAL: This image name 'my-app' MUST match the key used
         # in the 'gcloud deploy releases create --images' command in cloudbuild.yaml.
-        - image: hashitalks-cloud-run-app
+        - image: my-app
           ports:
             - containerPort: 8080
