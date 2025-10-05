@@ -12,7 +12,7 @@ export default function PresentationLanding() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
               <Badge variant="secondary" className="mb-4 text-sm font-medium">
-                Live Presentation
+                Live Presentation ****
               </Badge>
               <h1 className="text-4xl lg:text-6xl font-bold text-balance mb-6">
                 Production-Ready Multi-Stage
