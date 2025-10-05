@@ -8,7 +8,7 @@ spec:
     spec:
       containers:
         # CRITICAL: This placeholder 'my-app' MUST match the key used
-        # in the 'gcloud deploy releases create --images' command in your cloudbuild.yaml.
+        # in the 'gcloud deploy releases create --images' command in the cloudbuild.yaml.
         - image: my-app
           ports:
             - containerPort: 8080
