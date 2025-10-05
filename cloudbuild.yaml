@@ -31,3 +31,5 @@ steps:
 
 images:
   - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_APP_NAME}-repo/${_APP_NAME}:$SHORT_SHA'
+options:
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
