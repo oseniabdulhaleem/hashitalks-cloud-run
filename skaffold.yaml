@@ -3,37 +3,33 @@ kind: Config
 metadata:
   name: hashitalks-cloud-run-app
 
-# 1. MANIFESTS section defines HOW to render the YAMLs.
-# We use Kustomize here. The base configuration will point to the 'test' overlay by default.
-manifests:
-  kustomize:
-    paths:
-      - kustomize/overlays/test
-
-# 2. DEPLOY section defines WHAT to do with the rendered YAMLs.
-# We use the Cloud Run deployer.
+# Define the deployer globally.
 deploy:
   cloudrun: {}
 
-# 3. PROFILES section uses patches to change the configuration for different environments.
+# Define profiles for each environment.
+# Cloud Deploy will activate these based on the target.
 profiles:
-  # This profile is for the 'staging' environment.
+  # 1. The TEST profile
+  - name: test
+    manifests:
+      kustomize:
+        paths:
+          - kustomize/overlays/test
+
+  # 2. The STAGING profile
   - name: staging
-    patches:
-      # We replace the default Kustomize path with the 'staging' overlay path.
-      - op: replace
-        path: /manifests/kustomize/paths/0
-        value: kustomize/overlays/staging
+    manifests:
+      kustomize:
+        paths:
+          - kustomize/overlays/staging
 
-  # This profile is for the 'production' environment.
+  # 3. The PRODUCTION profile
   - name: production
-    patches:
-      # We replace the default Kustomize path with the 'production' overlay path.
-      - op: replace
-        path: /manifests/kustomize/paths/0
-        value: kustomize/overlays/production
-
-
+    manifests:
+      kustomize:
+        paths:
+          - kustomize/overlays/production
 
 
 
