@@ -273,7 +273,7 @@ export default function PresentationLanding() {
                 <span className="text-primary font-bold text-lg">OA</span>
               </div>
               <div>
-                <p className="font-semibold text-lg">Oseni Abdulhalee</p>
+                <p className="font-semibold text-lg">Oseni Abdulhaleem</p>
                 <p className="text-muted-foreground">Software Engineer</p>
               </div>
             </div>
