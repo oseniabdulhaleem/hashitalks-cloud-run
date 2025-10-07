@@ -274,7 +274,7 @@ export default function PresentationLanding() {
               </div>
               <div>
                 <p className="font-semibold text-lg">Wale Oseni</p>
-                <p className="text-muted-foreground">Software Engineer</p>
+                <p className="text-muted-foreground">Cloud Engineer</p>
               </div>
             </div>
             <p className="text-muted-foreground">

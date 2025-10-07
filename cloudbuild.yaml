@@ -6,6 +6,7 @@ steps:
       - 'build'
       - '-t'
       - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_APP_NAME}-repo/${_APP_NAME}:$SHORT_SHA'
+      - '--cache-from=${_REGION}-docker.pkg.dev/$PROJECT_ID/${_APP_NAME}-repo/${_APP_NAME}:latest'
       - '.'
 
   # Step 2: Push the built image to Artifact Registry
