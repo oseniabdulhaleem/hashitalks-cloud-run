@@ -41,7 +41,7 @@ export default function PresentationLanding() {
               </div>
               <div className="text-left">
                 <p className="font-semibold text-foreground">Oseni Abdulhaleem</p>
-                <p className="text-sm">Software Engineer</p>
+                <p className="text-sm">Software Developer</p>
               </div>
             </div>
           </div>
@@ -274,7 +274,7 @@ export default function PresentationLanding() {
               </div>
               <div>
                 <p className="font-semibold text-lg">Wale Oseni</p>
-                <p className="text-muted-foreground">Cloud Engineer</p>
+                <p className="text-muted-foreground">Software Developer</p>
               </div>
             </div>
             <p className="text-muted-foreground">
